@@ -10,15 +10,15 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('filieres', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('prenom');
-            $table->string('email')->unique();
-            $table->string('telephone')->unique();
-            $table->string('password');
-            $table->enum('role', ['admin', 'professeur', 'regisseur']);
-            $table->rememberToken();
+            $table->date('date_accreditation');
+            $table->string('type');
+            $table->decimal('cout', 10, 2);
+            $table->integer('duree');
+            $table->year('annee_universitaire');
+            $table->foreignId('professeur_id')->constrained('users');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('filieres');
     }
 };

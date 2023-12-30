@@ -10,15 +10,14 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
+        Schema::create('etudiants', function (Blueprint $table) {
+            $table->id('cne');
             $table->string('nom');
             $table->string('prenom');
-            $table->string('email')->unique();
-            $table->string('telephone')->unique();
-            $table->string('password');
-            $table->enum('role', ['admin', 'professeur', 'regisseur']);
-            $table->rememberToken();
+            $table->date('date_de_naissance');
+            $table->string('lieu_de_naissance');
+            $table->string('cin');
+            $table->foreignId('filiere_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('etudiants');
     }
 };
