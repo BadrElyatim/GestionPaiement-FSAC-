@@ -5,22 +5,34 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard.etudiants') }}">
+                    <a href="@can('viewany-etudiant') {{ route('dashboard.etudiants') }} @else {{ route('filiere.etudiants', auth()->user()->filiere->id) }} @endcan">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard.etudiants')" :active="request()->routeIs('dashboard.etudiants')">
-                        {{ __('Etudiants') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('dashboard.professeurs')" :active="request()->routeIs('dashboard.professeurs')">
-                        {{ __('Professeurs') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('dashboard.filieres')" :active="request()->routeIs('dashboard.filieres')">
-                        {{ __('Filières') }}
-                    </x-nav-link>
+                    @can('is_admin')
+                        <x-nav-link :href="route('dashboard.etudiants')" :active="request()->routeIs('dashboard.etudiants')">
+                            {{ __('Etudiants') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('dashboard.professeurs')" :active="request()->routeIs('dashboard.professeurs')">
+                            {{ __('Professeurs') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('dashboard.filieres')" :active="request()->routeIs('dashboard.filieres')">
+                            {{ __('Filières') }}
+                        </x-nav-link>
+                    
+                    @elsecan('viewany-etudiant')
+                        <x-nav-link :href="route('dashboard.etudiants')" :active="request()->routeIs('dashboard.etudiants')">
+                            {{ __('Etudiants') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('filiere.etudiants', auth()->user()->filiere->id)" :active="request()->routeIs('filiere.etudiants')">
+                            {{ __('Etudiants') }}
+                        </x-nav-link>
+                    @endcan
+                    
                 </div>
             </div>
 
@@ -73,15 +85,25 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard.etudiants')" :active="request()->routeIs('dashboard.etudiants')">
-                {{ __('Etudiants') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard.professeurs')" :active="request()->routeIs('dashboard.professeurs')">
-                {{ __('Professeurs') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard.filieres')" :active="request()->routeIs('dashboard.filieres')">
-                {{ __('Filieres') }}
-            </x-responsive-nav-link>
+            @can('is_admin')
+                <x-responsive-nav-link :href="route('dashboard.etudiants')" :active="request()->routeIs('dashboard.etudiants')">
+                    {{ __('Etudiants') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('dashboard.professeurs')" :active="request()->routeIs('dashboard.professeurs')">
+                    {{ __('Professeurs') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('dashboard.filieres')" :active="request()->routeIs('dashboard.filieres')">
+                    {{ __('Filieres') }}
+                </x-responsive-nav-link>
+            @elsecan('viewany-etudiant')
+                <x-responsive-nav-link :href="route('dashboard.etudiants')" :active="request()->routeIs('dashboard.etudiants')">
+                    {{ __('Etudiants') }}
+                </x-responsive-nav-link>
+            @else
+                <x-responsive-nav-link :href="route('filiere.etudiants', auth()->user()->filiere->id)" :active="request()->routeIs('filiere.etudiants')">
+                    {{ __('Etudiants') }}
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

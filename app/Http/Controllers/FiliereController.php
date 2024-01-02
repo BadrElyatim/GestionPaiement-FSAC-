@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Filiere;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\FiliereRequest;
 
 class FiliereController extends Controller
@@ -38,5 +39,19 @@ class FiliereController extends Controller
         );
 
         return redirect()->back();
+    }
+
+    public function show(Filiere $filiere)
+    {
+        if (!Gate::allows('viewany-etudiant') && auth()->user()->filiere->id !== $filiere->id) {
+            abort(403);
+        }
+
+        $filieres = Filiere::all();
+
+        return view('filiere-show', [
+            'etudiants' => $filiere->etudiants,
+            'filieres' => $filieres
+        ]);
     }
 }

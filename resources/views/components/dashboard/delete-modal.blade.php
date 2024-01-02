@@ -3,7 +3,7 @@
 @php
     $end = explode('/', $route)
 @endphp
-<form method="POST" action="{{ $route }}" tabindex="-1" id="{{ 'del-' .end($end) }}" class="hidden backdrop-blur-sm overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+<form method="POST" action="{{ $route }}" tabindex="-1" id="{{ 'del-' .end($end) }}" class="hidden backdrop-blur-sm overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal h-full">
     @csrf
     @method('DELETE')
     <div class="relative p-4 w-full max-w-md h-full md:h-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
