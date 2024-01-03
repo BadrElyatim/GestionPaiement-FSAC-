@@ -31,7 +31,7 @@ class TrancheController extends Controller
             'piece_recu' => ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048']
         ]);
 
-        $imagePath = $request->file('piece_recu')->store('images'); // 'images' is the storage folder
+        $imagePath = $request->file('piece_recu')->store('public'); // 'images' is the storage folder
 
 
         $validated = array_merge($validated, [

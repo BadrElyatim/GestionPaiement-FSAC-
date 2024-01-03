@@ -73,20 +73,23 @@
                                         </span>
                                     </td>
                                     <td class="px-5 py-5 space-x-2 whitespace-nowrap border-b border-gray-200">
-                                        {{-- @can('is_admin')
-                                            <button type="button" data-modal-toggle="edit-user-modal" data-cne="{{ $etudiant->cne }}" class="toggle-edit | inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-800 hover:bg-primary-800">
-                                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
-                                                Edit user
+                                            <button type="button" data-id="{{ $tranche->id }}" data-modal-toggle="tranche-details" class="toggle-tranche-details | inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-800 hover:bg-primary-800">
+                                                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 442.04 442.04" xml:space="preserve">
+                                                    <g>
+                                                        <g>
+                                                            <path d="M221.02,341.304c-49.708,0-103.206-19.44-154.71-56.22C27.808,257.59,4.044,230.351,3.051,229.203    c-4.068-4.697-4.068-11.669,0-16.367c0.993-1.146,24.756-28.387,63.259-55.881c51.505-36.777,105.003-56.219,154.71-56.219    c49.708,0,103.207,19.441,154.71,56.219c38.502,27.494,62.266,54.734,63.259,55.881c4.068,4.697,4.068,11.669,0,16.367    c-0.993,1.146-24.756,28.387-63.259,55.881C324.227,321.863,270.729,341.304,221.02,341.304z M29.638,221.021    c9.61,9.799,27.747,27.03,51.694,44.071c32.83,23.361,83.714,51.212,139.688,51.212s106.859-27.851,139.688-51.212    c23.944-17.038,42.082-34.271,51.694-44.071c-9.609-9.799-27.747-27.03-51.694-44.071    c-32.829-23.362-83.714-51.212-139.688-51.212s-106.858,27.85-139.688,51.212C57.388,193.988,39.25,211.219,29.638,221.021z"/>
+                                                        </g>
+                                                        <g>
+                                                            <path d="M221.02,298.521c-42.734,0-77.5-34.767-77.5-77.5c0-42.733,34.766-77.5,77.5-77.5c18.794,0,36.924,6.814,51.048,19.188    c5.193,4.549,5.715,12.446,1.166,17.639c-4.549,5.193-12.447,5.714-17.639,1.166c-9.564-8.379-21.844-12.993-34.576-12.993    c-28.949,0-52.5,23.552-52.5,52.5s23.551,52.5,52.5,52.5c28.95,0,52.5-23.552,52.5-52.5c0-6.903,5.597-12.5,12.5-12.5    s12.5,5.597,12.5,12.5C298.521,263.754,263.754,298.521,221.02,298.521z"/>
+                                                        </g>
+                                                        <g>
+                                                            <path d="M221.02,246.021c-13.785,0-25-11.215-25-25s11.215-25,25-25c13.786,0,25,11.215,25,25S234.806,246.021,221.02,246.021z"/>
+                                                        </g>
+                                                    </g>
+                                                </svg>                                                Details
                                             </button>
-                                            <button type="button" data-modal-toggle="delete-user-modal" data-id="{{ $etudiant->cne }}" class="toggle | inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
-                                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-                                                Delete user
-                                            </button>
-                                            
-                                            <x-dashboard.edit-modal-etudiant :etudiant=$etudiant :filieres=$filieres/>
-                                            <x-dashboard.delete-modal route="{{ route('etudiants.destroy', ['etudiant' => $etudiant->cne])}}"/>
-                                        @endcan --}}
                                     </td>
+                                    <x-dashboard.tranche-details :tranche=$tranche/>
                                 </tr>
        
                                 @endforeach                       
@@ -98,5 +101,19 @@
         </div>
     </div>
     <x-dashboard.add-modal-tranche cne="{{ $tranche->etudiant_cne }}"/>
-
+    
+    @push('js')
+        <script>
+            document.querySelectorAll('.toggle-tranche-details')
+                .forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const trancheDetails = document.getElementById('tranche-' + btn.dataset.id)
+                        trancheDetails.classList.toggle('translate-x-full')
+                    })
+                })
+               
+            
+            
+        </script>
+    @endpush
 </x-app-layout>
