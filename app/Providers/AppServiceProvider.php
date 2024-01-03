@@ -32,7 +32,11 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('is_prof', function (User $user) {
             return $user->role === 'professeur';
         });
-        
+
+        Gate::define('is_regisseur', function (User $user) {
+            return $user->role === 'regisseur';
+        });
+
         Gate::define('view-tranches', function (User $user) {
             return $user->role === 'professeur' || $user->role === 'regisseur';
         });

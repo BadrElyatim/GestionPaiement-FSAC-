@@ -100,7 +100,7 @@
             </div>
         </div>
     </div>
-    <x-dashboard.add-modal-tranche cne="{{ $tranche->etudiant_cne }}"/>
+    <x-dashboard.add-modal-tranche cne="{{ $etudiant_cne }}"/>
     
     @push('js')
         <script>

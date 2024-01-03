@@ -14,7 +14,8 @@ class TrancheController extends Controller
         $tranches = $etudiant->tranches;
 
         return view('tranches', [
-            'tranches' => $tranches
+            'tranches' => $tranches,
+            'etudiant_cne' => $etudiant->cne
         ]);
     }
 
@@ -22,7 +23,7 @@ class TrancheController extends Controller
     {
         $last_number = $etudiant->tranches()->orderBy('numero', 'desc')->first();
 
-        $last_number = $last_number ? $last_number->numero : 1;
+        $last_number = $last_number ? $last_number->numero : 0;
 
         $validated = $request->validate([
             'date' => ['required', 'date'],
@@ -41,6 +42,15 @@ class TrancheController extends Controller
         ]);
 
         $etudiant->tranches()->create($validated);
+
+        return redirect()->back();
+    }
+
+    public function changeStatus(Tranche $tranche)
+    {
+        $tranche->valide = !$tranche->valide;
+
+        $tranche->save();
 
         return redirect()->back();
     }

@@ -48,6 +48,8 @@ Route::get('/filieres/{filiere}/etudiants/', [FiliereController::class, 'show'])
 Route::get('etudiants/{etudiant}/tranches', [TrancheController::class, 'index'])->middleware(['auth', 'role:professeur,regisseur', 'prof'])->name('etudiant.tranches');
 Route::post('etudiants/{etudiant}/tranches', [TrancheController::class, 'store'])->middleware(['auth', 'role:professeur,regisseur', 'prof'])->name('tranches.store');
 
+Route::post('/tranches/{tranche}/changestatus', [TrancheController::class, 'changeStatus'])->middleware(['auth', 'role:regisseur'])->name('tranches.changestatus');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
