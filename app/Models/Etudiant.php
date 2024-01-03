@@ -13,9 +13,14 @@ class Etudiant extends Model
     protected $primaryKey = 'cne';
 
     protected $guarded = [];
-    
+
     public function filiere()
     {
         return $this->belongsTo(Filiere::class);
+    }
+
+    public function tranches()
+    {
+        return $this->hasMany(Tranche::class, 'etudiant_cne');
     }
 }

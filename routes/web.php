@@ -6,6 +6,7 @@ use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\ProfesseurController;
+use App\Http\Controllers\TrancheController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,9 @@ Route::get('/dashboard/etudiants', [EtudiantController::class, 'index'])->name('
 
 
 Route::get('/filieres/{filiere}/etudiants/', [FiliereController::class, 'show'])->middleware(['auth', 'verified'])->name('filiere.etudiants');
+
+Route::get('etudiants/{etudiant}/tranches', [TrancheController::class, 'index'])->middleware(['auth', 'role:professeur,regisseur', 'prof'])->name('etudiant.tranches');
+Route::post('etudiants/{etudiant}/tranches', [TrancheController::class, 'store'])->middleware(['auth', 'role:professeur,regisseur', 'prof'])->name('tranches.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
