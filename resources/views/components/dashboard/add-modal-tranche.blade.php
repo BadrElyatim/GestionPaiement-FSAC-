@@ -17,7 +17,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form method="POST" action="{{ route('tranches.store', $cne) }}" class="p-4 md:p-5">
+            <form method="POST" action="{{ route('tranches.store', $cne) }}" enctype="multipart/form-data" class="p-4 md:p-5">
                 @csrf
                 <input type="hidden" name="etudiant_cne" value="{{ $cne }}">
                 <div class="grid gap-4 mb-4 grid-cols-2">
@@ -33,6 +33,7 @@
                         <label for="montant" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Montant</label>
                         <input type="text" name="montant" id="montant" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                     </div>
+                    <input type="file" required name="piece_recu" accept=".pdf, .jpg, .jpeg, .png">
                     
                 </div>
                 <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">

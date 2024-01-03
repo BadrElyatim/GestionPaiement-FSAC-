@@ -110,8 +110,6 @@
                                                         </svg>                                                    Tranches
                                                  </button>
                                             </a>
-                                            
-                                            
                                         </td>
                                     @endcan
                                 </tr>
