@@ -37,15 +37,15 @@
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="cout" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cout</label>
-                        <input type="text" name="cout" id="cout" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                        <input type="text" name="cout" id="cout" value="25000" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="duree" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duree</label>
-                        <input type="text" name="duree" id="duree" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                        <input type="text" name="duree" id="duree" value="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="annee_universitaire" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Annee Universitaire</label>
-                        <input type="text" name="annee_universitaire" id="annee_universitaire" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                        <input type="date" name="annee_universitaire" value="{{ explode(' ', now())[0] }}" id="annee_universitaire" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="professeur" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">professeur</label>
