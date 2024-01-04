@@ -35,7 +35,7 @@ class EtudiantController extends Controller
             [
                 'prenom' => ['required', 'string', 'max:255'],
                 'nom' => ['required', 'string', 'max:255'],
-                'cne' => ['required', 'integer', Rule::when($etudiant->cne != $request->cne, Rule::unique('etudiants')) , 'digits_between:1,11'],
+                'cne' => ['required', 'string', Rule::when($etudiant->cne != $request->cne, Rule::unique('etudiants'))],
                 'cin' => ['required', 'string', 'max:255'],
                 'lieu_de_naissance' => ['required', 'string', 'max:255'],
                 'date_de_naissance' => ['required', 'date', 'max:255'],

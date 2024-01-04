@@ -24,7 +24,7 @@ class AddEtudiantRequest extends FormRequest
         return [
             'prenom' => ['required', 'string', 'max:255'],
             'nom' => ['required', 'string', 'max:255'],
-            'cne' => ['required', 'unique:etudiants', 'integer'],
+            'cne' => ['required', 'unique:etudiants', 'string'],
             'cin' => ['required', 'string', 'max:255'],
             'lieu_de_naissance' => ['required', 'string', 'max:255'],
             'date_de_naissance' => ['required', 'date', 'max:255'],

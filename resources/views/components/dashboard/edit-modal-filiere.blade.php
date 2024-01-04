@@ -23,9 +23,12 @@
             <label for="date_accreditation-{{ $filiere->id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Accreditation</label>
             <input type="date" id="date_accreditation-{{ $filiere->id }}" name="date_accreditation" value="{{ $filiere->date_accreditation }}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
         </div>
-        <div class="mb-5">
-            <label for="type-{{ $filiere->id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-            <input type="text" id="type-{{ $filiere->id }}" name="type" value="{{ $filiere->type }}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
+        <div class="col-span-2 sm:col-span-1">
+            <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">type</label>
+            <select id="type" name="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                <option @if ($filiere->type == 'Licence') {{ 'selected' }} @endif value="Licence">Licence</option>
+                <option @if ($filiere->type == 'Master') {{ 'selected' }} @endif value="Master">Master</option>
+            </select>
         </div>
         <div class="mb-5">
             <label for="duree-{{ $filiere->id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duree</label>

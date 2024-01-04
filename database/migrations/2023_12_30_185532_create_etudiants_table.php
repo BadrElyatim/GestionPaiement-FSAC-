@@ -12,7 +12,7 @@ return new class () extends Migration {
     {
         Schema::create('etudiants', function (Blueprint $table) {
             $table->id();
-            $table->integer('cne');
+            $table->string('cne');
             $table->string('nom');
             $table->string('prenom');
             $table->date('date_de_naissance');
