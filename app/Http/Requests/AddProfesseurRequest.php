@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfesseurRequest extends FormRequest
+class AddProfesseurRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +25,8 @@ class ProfesseurRequest extends FormRequest
         return [
             'prenom' => ['required', 'string', 'max:255'],
             'nom' => ['required', 'string', 'max:255'],
-            'telephone' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
+            'telephone' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'string', 'max:255']
         ];
     }

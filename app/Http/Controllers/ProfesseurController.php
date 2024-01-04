@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\ProfesseurRequest;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\AddProfesseurRequest;
+use App\Http\Requests\UpdateProfesseurRequest;
 
 class ProfesseurController extends Controller
 {
@@ -41,7 +42,7 @@ class ProfesseurController extends Controller
         return redirect()->route('dashboard.professeurs');
     }
 
-    public function update(user $professeur, ProfesseurRequest $request)
+    public function update(user $professeur, UpdateProfesseurRequest $request)
     {
         $professeur->update(
             $request->validated()
@@ -50,7 +51,7 @@ class ProfesseurController extends Controller
         return redirect()->back();
     }
 
-    public function store(ProfesseurRequest $request)
+    public function store(AddProfesseurRequest $request)
     {
         $professeur = $request ->validated();
 
