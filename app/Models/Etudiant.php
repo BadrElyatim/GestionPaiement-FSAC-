@@ -10,8 +10,6 @@ class Etudiant extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'cne';
-
     protected $guarded = [];
 
     public function filiere()

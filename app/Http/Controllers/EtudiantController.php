@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EtudiantRequest;
-use App\Models\Etudiant;
 use App\Models\Filiere;
+use App\Models\Etudiant;
 use Illuminate\Http\Request;
+use App\Http\Requests\AddEtudiantRequest;
+use App\Http\Requests\UpdateEtudiantRequest;
+use Illuminate\Validation\Rule;
 
 class EtudiantController extends Controller
 {
@@ -27,16 +29,28 @@ class EtudiantController extends Controller
         return redirect()->route('dashboard.etudiants');
     }
 
-    public function update(Etudiant $etudiant, EtudiantRequest $request)
+    public function update(Etudiant $etudiant, Request $request)
     {
+        $validated = $request->validate(
+            [
+                'prenom' => ['required', 'string', 'max:255'],
+                'nom' => ['required', 'string', 'max:255'],
+                'cne' => ['required', 'integer', Rule::when($etudiant->cne != $request->cne, Rule::unique('etudiants')) , 'digits_between:1,11'],
+                'cin' => ['required', 'string', 'max:255'],
+                'lieu_de_naissance' => ['required', 'string', 'max:255'],
+                'date_de_naissance' => ['required', 'date', 'max:255'],
+                'filiere_id' => ['required', 'integer']
+            ]
+        );
+
         $etudiant->update(
-            $request->validated()
+            $validated
         );
 
         return redirect()->back();
     }
 
-    public function store(EtudiantRequest $request)
+    public function store(AddEtudiantRequest $request)
     {
         Etudiant::create(
             $request ->validated()

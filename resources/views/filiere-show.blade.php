@@ -4,7 +4,9 @@
             {{ __('Etudiants') }}
         </h2>
     </x-slot>
-
+    @if ($errors->any())
+        <x-dashboard.errors-alert :errors="$errors->all()"/>
+    @endif
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @can('viewany-etudiant')
@@ -88,12 +90,12 @@
                                             </button>
                                             
                                             <x-dashboard.edit-modal-etudiant :etudiant=$etudiant :filieres=$filieres/>
-                                            <x-dashboard.delete-modal route="{{ route('etudiants.destroy', ['etudiant' => $etudiant->cne])}}"/>
+                                            <x-dashboard.delete-modal route="{{ route('etudiants.destroy', ['etudiant' => $etudiant->id])}}"/>
                                         </td>
                                     @endcan
                                     @can('view-tranches')
                                         <td class="px-5 py-5 space-x-2 whitespace-nowrap border-b border-gray-200">
-                                            <a href="{{ route('etudiant.tranches', $etudiant->cne) }}">
+                                            <a href="{{ route('etudiant.tranches', $etudiant->id) }}">
                                                 <button type="button" data-modal-toggle="edit-user-modal" data-cne="{{ $etudiant->cne }}" class="toggle-edit | inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-800 hover:bg-primary-800">
                                                     <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 442.04 442.04" xml:space="preserve">
                                                         <g>

@@ -20,18 +20,18 @@ use App\Http\Controllers\TrancheController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard/professeurs', [ProfesseurController::class, 'index'])->name('dashboard.professeurs');
     Route::post('/dashboard/etudiants', [EtudiantController::class, 'store'])->name('etudiants.store');
 
-    route::delete('/dashboard/etudiants/{etudiant}', [EtudiantController::class, 'destroy'])->middleware(['auth'])->name('etudiants.destroy');
-    route::put('/dashboard/etudiants/{etudiant}', [EtudiantController::class, 'update'])->middleware(['auth'])->name('etudiants.update');
+    route::delete('/dashboard/etudiants/{etudiant}', [EtudiantController::class, 'destroy'])->name('etudiants.destroy');
+    route::put('/dashboard/etudiants/{etudiant}', [EtudiantController::class, 'update'])->name('etudiants.update');
 
-    route::put('/dashboard/professeurs/{professeur}', [ProfesseurController::class, 'update'])->middleware(['auth'])->name('professeurs.update');
-    route::delete('/dashboard/professeurs/{professeur}', [ProfesseurController::class, 'destroy'])->middleware(['auth'])->name('professeurs.destroy');
+    route::put('/dashboard/professeurs/{professeur}', [ProfesseurController::class, 'update'])->name('professeurs.update');
+    route::delete('/dashboard/professeurs/{professeur}', [ProfesseurController::class, 'destroy'])->name('professeurs.destroy');
     Route::post('/dashboard/professeurs', [ProfesseurController::class, 'store'])->name('professeurs.store');
 
     route::put('/dashboard/filieres/{filiere}', [FiliereController::class, 'update'])->name('filieres.update');

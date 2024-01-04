@@ -18,8 +18,7 @@ return new class () extends Migration {
             $table->string('piece_recu');
             $table->boolean('valide');
             $table->string('numero_de_recu');
-
-            $table->foreignId('etudiant_cne')->constrained('etudiants', 'cne');
+            $table->foreignId('etudiant_cne')->constrained('etudiants', 'id');
             $table->timestamps();
         });
     }

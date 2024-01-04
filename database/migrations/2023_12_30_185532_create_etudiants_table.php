@@ -11,7 +11,8 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::create('etudiants', function (Blueprint $table) {
-            $table->id('cne');
+            $table->id();
+            $table->integer('cne');
             $table->string('nom');
             $table->string('prenom');
             $table->date('date_de_naissance');

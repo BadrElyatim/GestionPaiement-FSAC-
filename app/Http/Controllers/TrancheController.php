@@ -15,7 +15,7 @@ class TrancheController extends Controller
 
         return view('tranches', [
             'tranches' => $tranches,
-            'etudiant_cne' => $etudiant->cne
+            'etudiant_cne' => $etudiant->id
         ]);
     }
 

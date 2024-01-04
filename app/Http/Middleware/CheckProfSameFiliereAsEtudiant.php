@@ -17,7 +17,7 @@ class CheckProfSameFiliereAsEtudiant
     {
         $user = auth()->user();
 
-        if ($user->role === 'professeur' && $user->filiere->nom !== $request->etudiant->filiere->nom) {
+        if ($user && $user->role === 'professeur' && $user->filiere->nom !== $request->etudiant->filiere->nom) {
             abort(403);
         }
         return $next($request);

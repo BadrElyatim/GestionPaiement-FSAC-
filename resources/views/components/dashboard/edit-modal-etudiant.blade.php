@@ -1,6 +1,6 @@
 @props(['etudiant', 'filieres'])
 
-<form method="POST" action="{{ route('etudiants.update', $etudiant->cne) }}" id="{{ $etudiant->cne }}" class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label">
+<form method="POST" action="{{ route('etudiants.update', $etudiant->id) }}" id="{{ $etudiant->cne }}" class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label">
     @csrf
     @method('PUT')
     <h5 id="drawer-label" class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"><svg class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
