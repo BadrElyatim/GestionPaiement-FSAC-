@@ -90,8 +90,9 @@
                                                     </g>
                                                 </svg>                                                Details
                                             </button>
+                                            <x-dashboard.tranche-details :tranche=$tranche/>
                                     </td>
-                                    <x-dashboard.tranche-details :tranche=$tranche/>
+                                    
                                 </tr>
        
                                 @endforeach                       
@@ -113,6 +114,22 @@
                         trancheDetails.classList.toggle('translate-x-full')
                     })
                 })
+
+                document.querySelectorAll('.numero-recu-toggle')
+                    .forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            document.querySelector('#numero-recu-modal-' + btn.dataset.id).classList.toggle('hidden')
+                        })
+                    }); 
+
+                document.querySelectorAll('.update-tranche-toggle')
+                    .forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            console.log(1)
+                            document.querySelector('#update-tranche-modal-' + btn.dataset.id).classList.toggle('hidden')
+                        })
+                    });  
         </script>
+
     @endpush
 </x-app-layout>

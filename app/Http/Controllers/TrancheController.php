@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Etudiant;
 use App\Models\Tranche;
+use App\Models\Etudiant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TrancheController extends Controller
 {
@@ -40,6 +41,34 @@ class TrancheController extends Controller
         ]);
 
         $etudiant->tranches()->create($validated);
+
+        return redirect()->back();
+    }
+
+    public function update(Tranche $tranche, Request $request)
+    {
+        $validated = $request->validate(
+            [
+                'date' => ['required', 'date'],
+                'montant' => ['required', 'numeric', 'between:0.00,99999999.99'],
+                'piece_recu' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048']
+            ]
+        );
+
+        if ($request->hasFile('piece_recu')) {
+            // Delete the old file if it exists
+            if ($tranche->piece_recu) {
+                Storage::delete($tranche->piece_recu);
+            }
+    
+            $file = $request->file('piece_recu');
+            $file_path = $file->store('public'); // Update the storage path as needed
+            $validated['piece_recu'] = $file_path;
+        }
+        
+    
+        // Update Tranche model
+        $tranche->update($validated);
 
         return redirect()->back();
     }

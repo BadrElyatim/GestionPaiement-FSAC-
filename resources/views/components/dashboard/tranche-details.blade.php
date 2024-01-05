@@ -1,4 +1,4 @@
-{{-- @props(['tranche']) --}}
+@props(['tranche'])
 
   <div id="tranche-{{ $tranche->id }}" class="hs-overlay hs-overlay-open:translate-x-0 translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full max-w-md w-full z-[60] bg-white border-e dark:bg-gray-800 dark:border-gray-700" tabindex="-1">
     <div class="relative overflow-hidden min-h-[8rem] text-center bg-[url('https://preline.co/assets/svg/component/abstract-bg-1.svg')] bg-no-repeat bg-center">
@@ -74,8 +74,16 @@
           <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
           Invoice PDF
         </a>
+        @can('is_prof')
+          @if (!$tranche->valide)
+            <button type="button" data-modal-toggle="edit-user-modal" data-id="{{ $tranche->id }}" class="update-tranche-toggle | inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-800 hover:bg-primary-800">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
+              Edit
+            </button>
+          @endif
+        @endcan
         @can('is_regisseur')
-          <button type="submit" class="numero-recu-toggle | py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+          <button type="submit" data-id="{{ $tranche->id }}" class="numero-recu-toggle | py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
               Valider le reçu
           </button>
         @endcan
@@ -84,6 +92,7 @@
     </div>
     <!-- End Body -->
     <x-dashboard.numero-de-recu :tranche=$tranche/>
+    <x-dashboard.edit-modal-tranche :tranche=$tranche />
   </div>
 
 <!-- End Invoice -->
