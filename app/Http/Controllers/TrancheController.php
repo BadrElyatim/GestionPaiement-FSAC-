@@ -13,9 +13,17 @@ class TrancheController extends Controller
     {
         $tranches = $etudiant->tranches;
 
+        $total_payee = $tranches->reject(function (Tranche $tranche) {
+            return $tranche->valide === 0;
+        })->reduce(function (?int $carry, Tranche $tranche) {
+            return $carry + $tranche->montant;
+        });
+
         return view('tranches', [
             'tranches' => $tranches,
-            'etudiant_cne' => $etudiant->id
+            'etudiant_cne' => $etudiant->id,
+            'total_payee' => $total_payee ?? 0,
+            'reste' => $etudiant->filiere->cout - $total_payee
         ]);
     }
 
@@ -60,13 +68,13 @@ class TrancheController extends Controller
             if ($tranche->piece_recu) {
                 Storage::delete($tranche->piece_recu);
             }
-    
+
             $file = $request->file('piece_recu');
             $file_path = $file->store('public'); // Update the storage path as needed
             $validated['piece_recu'] = $file_path;
         }
-        
-    
+
+
         // Update Tranche model
         $tranche->update($validated);
 
@@ -90,7 +98,7 @@ class TrancheController extends Controller
 
         $tranche->numero_de_recu = $request->numero_de_recu;
         $tranche->valide = true;
-        
+
         $tranche->save();
 
         return redirect()->back();

@@ -99,7 +99,10 @@
                             </tbody>
                         </table>
                     </div>
+                    <p class="mt-5"><span class="font-bold">Total Payee:</span> {{ $total_payee }} MAD</p>
+                    <p><span class="font-bold">Reste: </span>{{ $reste }} MAD</p>
                 </div>
+
             </div>
         </div>
     </div>
