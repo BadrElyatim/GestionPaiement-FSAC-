@@ -49,6 +49,7 @@ Route::get('etudiants/{etudiant}/tranches', [TrancheController::class, 'index'])
 Route::post('etudiants/{etudiant}/tranches', [TrancheController::class, 'store'])->middleware(['auth', 'role:professeur,regisseur', 'prof'])->name('tranches.store');
 
 Route::post('/tranches/{tranche}/changestatus', [TrancheController::class, 'changeStatus'])->middleware(['auth', 'role:regisseur'])->name('tranches.changestatus');
+Route::post('/tranches/{tranche}/numero', [TrancheController::class, 'addNumero'])->middleware(['auth', 'role:regisseur'])->name('tranches.numero.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

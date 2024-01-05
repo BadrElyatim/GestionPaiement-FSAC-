@@ -75,17 +75,15 @@
           Invoice PDF
         </a>
         @can('is_regisseur')
-          <form action="{{ route('tranches.changestatus', ['tranche' => $tranche->id]) }}" method="POST">
-            @csrf
-            <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                Valider le reçu
-            </button>
-          </form>
+          <button type="submit" class="numero-recu-toggle | py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+              Valider le reçu
+          </button>
         @endcan
       </div>
       <!-- End Buttons -->
     </div>
     <!-- End Body -->
+    <x-dashboard.numero-de-recu :tranche=$tranche/>
   </div>
 
 <!-- End Invoice -->

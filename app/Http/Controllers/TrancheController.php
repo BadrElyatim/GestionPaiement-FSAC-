@@ -52,4 +52,18 @@ class TrancheController extends Controller
 
         return redirect()->back();
     }
+
+    public function addNumero(Tranche $tranche, Request $request)
+    {
+        $request->validate([
+            'numero_de_recu' => ['required', 'string', 'max:255']
+        ]);
+
+        $tranche->numero_de_recu = $request->numero_de_recu;
+        $tranche->valide = true;
+        
+        $tranche->save();
+
+        return redirect()->back();
+    }
 }
