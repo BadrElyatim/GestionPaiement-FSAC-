@@ -26,7 +26,7 @@ class FiliereRequest extends FormRequest
             'date_accreditation' => ['required', 'date'],
             'type' => ['required', 'string', 'max:255'],
             'duree' => ['required', 'integer'],
-            'annee_universitaire' => ['required', 'digits:4', 'integer'],
+            'annee_universitaire' => ['required', 'string', 'max:255'],
             'professeur_id' => ['required', 'integer'],
             'cout' => ['required', 'numeric', 'between:0.00,99999999.99']
         ];
