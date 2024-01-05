@@ -133,7 +133,6 @@
                 .forEach(closeBtn => {
                     closeBtn.addEventListener('click', () => {
                         const deleteModal = document.getElementById('del-' + closeBtn.dataset.id)
-                        console.log(closeBtn.dataset.id)
                         deleteModal.classList.toggle('hidden')                       
                     })
                 });
