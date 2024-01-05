@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Etudiant;
 use App\Models\Tranche;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class TrancheController extends Controller
 {
@@ -28,7 +27,6 @@ class TrancheController extends Controller
         $validated = $request->validate([
             'date' => ['required', 'date'],
             'montant' => ['required', 'numeric', 'between:0.00,99999999.99'],
-            'numero_de_recu' => ['required', 'string', 'max:255'],
             'piece_recu' => ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:2048']
         ]);
 
