@@ -125,7 +125,6 @@
                 document.querySelectorAll('.update-tranche-toggle')
                     .forEach(btn => {
                         btn.addEventListener('click', () => {
-                            console.log(1)
                             document.querySelector('#update-tranche-modal-' + btn.dataset.id).classList.toggle('hidden')
                         })
                     });  
