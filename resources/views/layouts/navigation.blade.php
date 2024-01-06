@@ -22,6 +22,9 @@
                         <x-nav-link :href="route('dashboard.filieres')" :active="request()->routeIs('dashboard.filieres')">
                             {{ __('Filières') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('dashboard.regisseurs')" :active="request()->routeIs('dashboard.regisseurs')">
+                            {{ __('Régisseurs') }}
+                        </x-nav-link>
                     
                     @elsecan('viewany-etudiant')
                         <x-nav-link :href="route('dashboard.etudiants')" :active="request()->routeIs('dashboard.etudiants')">
@@ -94,6 +97,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('dashboard.filieres')" :active="request()->routeIs('dashboard.filieres')">
                     {{ __('Filieres') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('dashboard.filieres')" :active="request()->routeIs('dashboard.regisseurs')">
+                    {{ __('Régisseurs') }}
                 </x-responsive-nav-link>
             @elsecan('viewany-etudiant')
                 <x-responsive-nav-link :href="route('dashboard.etudiants')" :active="request()->routeIs('dashboard.etudiants')">

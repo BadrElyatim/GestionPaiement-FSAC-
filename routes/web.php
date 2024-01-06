@@ -4,9 +4,10 @@ use App\Models\Etudiant;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\EtudiantController;
-use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\TrancheController;
+use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\RegisseurController;
+use App\Http\Controllers\ProfesseurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,15 +25,21 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/dashboard/professeurs', [ProfesseurController::class, 'index'])->name('dashboard.professeurs');
     Route::post('/dashboard/etudiants', [EtudiantController::class, 'store'])->name('etudiants.store');
 
     route::delete('/dashboard/etudiants/{etudiant}', [EtudiantController::class, 'destroy'])->name('etudiants.destroy');
     route::put('/dashboard/etudiants/{etudiant}', [EtudiantController::class, 'update'])->name('etudiants.update');
 
+
+    Route::get('/dashboard/professeurs', [ProfesseurController::class, 'index'])->name('dashboard.professeurs');
     route::put('/dashboard/professeurs/{professeur}', [ProfesseurController::class, 'update'])->name('professeurs.update');
     route::delete('/dashboard/professeurs/{professeur}', [ProfesseurController::class, 'destroy'])->name('professeurs.destroy');
     Route::post('/dashboard/professeurs', [ProfesseurController::class, 'store'])->name('professeurs.store');
+
+    Route::get('/dashboard/regisseurs', [RegisseurController::class, 'index'])->name('dashboard.regisseurs');
+    route::put('/dashboard/regisseurs/{regisseur}', [RegisseurController::class, 'update'])->name('regisseurs.update');
+    route::delete('/dashboard/regisseurs/{regisseur}', [RegisseurController::class, 'destroy'])->name('regisseurs.destroy');
+    Route::post('/dashboard/regisseurs', [RegisseurController::class, 'store'])->name('regisseurs.store');
 
     route::put('/dashboard/filieres/{filiere}', [FiliereController::class, 'update'])->name('filieres.update');
     Route::post('/dashboard/filieres', [FiliereController::class, 'store'])->name('filieres.store');
