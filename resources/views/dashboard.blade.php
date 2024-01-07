@@ -41,6 +41,19 @@
                                     >
                                         Filiere
                                     </th>
+                                    @can('is_admin')
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                                    >
+                                        Mpc
+                                    </th>
+                                    
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                                    >
+                                        Nt
+                                    </th>
+                                    @endcan
                                     <th
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                     >
@@ -78,6 +91,15 @@
                                         <span class="relative">{{ $etudiant->filiere->nom }}</span>
                                         </span>
                                     </td>
+                                    @can('is_admin')
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <p class="text-gray-900 whitespace-no-wrap">{{ $etudiant->Mpc }}</p>
+                                    </td>
+                                    
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <p class="text-gray-900 whitespace-no-wrap">{{ $etudiant->Nt }}</p>
+                                    </td>
+                                    @endcan
                                     <td class="px-5 py-5 space-x-2 whitespace-nowrap border-b border-gray-200">
                                         @can('is_admin')
                                             <button type="button" data-modal-toggle="edit-user-modal" data-cne="{{ $etudiant->cne }}" class="toggle-edit | inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-800 hover:bg-primary-800">

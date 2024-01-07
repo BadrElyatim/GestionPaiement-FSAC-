@@ -45,7 +45,7 @@ class EtudiantController extends Controller
     }
 
     public function update(Etudiant $etudiant, Request $request)
-    {   
+    {
         $validated = $request->validate(
             [
                 'prenom' => ['required', 'string', 'max:255'],

@@ -21,4 +21,24 @@ class Etudiant extends Model
     {
         return $this->hasMany(Tranche::class, 'etudiant_cne');
     }
+
+    public function getMpcAttribute()
+    {
+        return $this->tranches->where('valide', 1)->sum('montant');
+    }
+
+    public function getMpncAttribute()
+    {
+        return $this->tranches->where('valide', 0)->sum('montant');
+    }
+
+    public function getMrAttribute()
+    {
+        return $this->filiere->cout - $this->mpc;
+    }
+
+    public function getNtAttribute()
+    {
+        return $this->tranches->count();
+    }
 }
