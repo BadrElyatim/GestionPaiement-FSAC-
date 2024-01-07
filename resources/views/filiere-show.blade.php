@@ -75,6 +75,13 @@
                                             Nt
                                         </th>
                                     @endcan
+                                    @can('is_regisseur')
+                                        <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                                        >
+                                            NtN
+                                        </th>
+                                    @endcan
                                     <th
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                     >
@@ -125,6 +132,19 @@
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                             <p class="text-gray-900 whitespace-no-wrap">{{ $etudiant->Nt }}</p>
                                         </td>
+                                    @endcan
+                                    @can('is_regisseur')
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <span
+                                        class="relative inline-block px-3 py-1 font-semibold {{ $etudiant->Ntn ? 'text-red-700' : 'text-green-900' }} leading-tight"
+                                        >
+                                        <span
+                                            aria-hidden
+                                            class="absolute inset-0 {{ $etudiant->Ntn ? 'bg-red-500' : 'bg-green-200' }} opacity-50 rounded-full"
+                                        ></span>
+                                        <span class="relative">{{ $etudiant->Ntn }}</span>
+                                        </span>
+                                    </td>
                                     @endcan
                                     @can('is_admin')
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">

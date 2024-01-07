@@ -41,4 +41,9 @@ class Etudiant extends Model
     {
         return $this->tranches->count();
     }
+
+    public function getNtnAttribute()
+    {
+        return $this->tranches->where('valide', 0)->count();
+    }
 }
