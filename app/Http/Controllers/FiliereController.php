@@ -49,9 +49,21 @@ class FiliereController extends Controller
 
         $filieres = Filiere::all();
 
+        $etudiants = $filiere->etudiants;
+
+        $totalMPC = $etudiants->sum('mpc');
+        $totalMPNC = $etudiants->sum('mpnc');
+
+        // Calculate total remaining amount (MR)
+        $totalMR = $etudiants->sum(function ($etudiant) {
+            return $etudiant->filiere->cout - $etudiant->mpc;
+        });
         return view('filiere-show', [
-            'etudiants' => $filiere->etudiants,
-            'filieres' => $filieres
+            'etudiants' => $etudiants,
+            'filieres' => $filieres,
+            'totalMPC' => $totalMPC,
+            'totalMPNC' => $totalMPNC,
+            'totalMR' => $totalMR,
         ]);
     }
 }

@@ -195,6 +195,11 @@
                             </tbody>
                         </table>
                     </div>
+                    @can('view-tranches')
+                    <p class="mt-5"><span class="font-bold">Total MPC (montant payé comptabilisé): </span> {{ $totalMPC }} MAD</p>
+                    <p><span class="font-bold">Total MPC (montant payé non comptabilisé): </span>{{ $totalMPNC }} MAD</p>
+                    <p class="mt-5"><span class="font-bold">Total Restant:</span> {{ $totalMR }} MAD</p>
+                    @endcan
                 </div>
             </div>
         </div>
