@@ -59,6 +59,12 @@
               <span>{{ $tranche->date }}</span>
             </div>
           </li>
+          <li class="inline-flex items-center gap-x-2 py-3 px-4 text-sm border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:border-gray-700 dark:text-gray-200">
+            <div class="flex items-center justify-between w-full">
+              <span>Date de validation</span>
+              <span>{{ $tranche->date_de_validation }}</span>
+            </div>
+          </li>
           <li class="inline-flex items-center gap-x-2 py-3 px-4 text-sm font-semibold bg-gray-50 border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-slate-800 dark:border-gray-700 dark:text-gray-200">
             <div class="flex items-center justify-between w-full">
               <span>Payment number</span>

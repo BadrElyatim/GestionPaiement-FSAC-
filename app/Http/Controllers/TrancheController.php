@@ -98,6 +98,7 @@ class TrancheController extends Controller
 
         $tranche->numero_de_recu = $request->numero_de_recu;
         $tranche->valide = true;
+        $tranche->date_de_validation = now();
 
         $tranche->save();
 
