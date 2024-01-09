@@ -94,6 +94,13 @@
           </button>
         @endcan
       </div>
+      @can('is_regisseur')
+        <form action="{{ route('remarques.store', ['tranche' => $tranche->id]) }}" method="POST" class="mt-10">
+          @csrf
+          <label for="remarque" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ajouter une remarque</label>
+          <input type="text" name="remarque" id="remarque" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+        </form>
+      @endcan
       <!-- End Buttons -->
     </div>
     <!-- End Body -->

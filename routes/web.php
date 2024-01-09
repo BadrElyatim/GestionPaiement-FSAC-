@@ -6,6 +6,7 @@ use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrancheController;
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\RemarqueController;
 use App\Http\Controllers\RegisseurController;
 use App\Http\Controllers\ProfesseurController;
 
@@ -60,9 +61,21 @@ Route::post('/tranches/{tranche}/numero', [TrancheController::class, 'addNumero'
 
 Route::put('/tranches/{tranche}/', [TrancheController::class, 'update'])->middleware(['auth', 'role:professeur'])->name('tranches.update');
 
+
+Route::prefix('tranches/{tranche}/remarques')->group(function () {
+    // Show the form to add or update a remarque
+    Route::get('create', [RemarqueController::class, 'create'])->name('remarques.create');
+
+    // Add or update a remarque
+    Route::post('store', [RemarqueController::class, 'store'])->name('remarques.store');
+
+    // Delete a remarque
+    Route::delete('{remarque}', [RemarqueController::class, 'destroy'])->name('remarques.destroy');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
