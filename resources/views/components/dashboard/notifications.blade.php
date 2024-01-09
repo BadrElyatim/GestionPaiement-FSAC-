@@ -2,6 +2,7 @@
 <div id="notifications" class='absolute hidden right-full mt-2 shadow-lg bg-white py-2 z-[1000] min-w-full rounded-lg w-[410px] max-h-[500px] overflow-auto'>
   <div class="flex items-center justify-between my-4 px-4">
     <a href="{{ route('mark-notifications-as-read') }}" class="text-xs text-blue-500 cursor-pointer">Mark as read</a>
+    <a href="{{ route('clear-notifications') }}" class="text-xs text-blue-500 cursor-pointer">Clear all</a>
   </div>
   <ul class="divide-y">
     @foreach (auth()->user()->notifications as $notification)

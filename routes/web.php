@@ -65,6 +65,7 @@ Route::delete('/tranches/{tranche}/', [TrancheController::class, 'destroy'])->mi
 
 
 Route::get('/mark-notifications-as-read', [NotificationController::class, 'markAsRead'])->name('mark-notifications-as-read');
+Route::get('/clear-notifications', [NotificationController::class, 'clearNotifications'])->name('clear-notifications');
 
 
 Route::prefix('tranches/{tranche}/remarques')->group(function () {
