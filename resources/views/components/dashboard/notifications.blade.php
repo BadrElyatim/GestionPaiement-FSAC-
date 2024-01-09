@@ -7,8 +7,10 @@
     @foreach (auth()->user()->notifications as $notification)
       <li class="py-4 px-4 flex items-center hover:bg-gray-50 text-black text-sm cursor-pointer {{ $notification->read_at ? '': 'bg-blue-100' }}">
         <div>
-          <h3 class="text-sm text-[#333] font-semibold">Your have a new remark from {{ $notification->data['from']['prenom'] }} {{ $notification->data['from']['nom'] }}</h3>
-            <p class="text-sm text-gray-600 mt-2">{{ $notification->data['remarque'] }}</p>
+          <h3 class="text-sm text-[#333] font-semibold">{{ $notification->data['title'] }} {{ $notification->data['from']['prenom'] }} {{ $notification->data['from']['nom'] }}</h3>
+            @if ($notification->type === App\Notifications\RemarqueNotification::class)
+              <p class="text-sm text-gray-600 mt-2">{{ $notification->data['remarque'] }}</p>
+            @endif
             <p class="text-xs text-gray-400">etudiant: {{ $notification->data['etudiant']['prenom'] }} {{ $notification->data['etudiant']['nom'] }}, numero tranche: {{ $notification->data['tranche_id'] }}</p>
             <p class="text-xs text-blue-500 leading-3 mt-2">{{ $notification->created_at->diffForHumans() }}</p>
         </div>

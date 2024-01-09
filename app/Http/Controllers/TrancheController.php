@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Tranche;
 use App\Models\Etudiant;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\EditTrancheNotification;
+use Illuminate\Support\Facades\Notification;
 
 class TrancheController extends Controller
 {
@@ -84,6 +87,14 @@ class TrancheController extends Controller
 
         // Update Tranche model
         $tranche->update($validated);
+
+        $etudiant = $tranche->etudiant;
+
+        Notification::send(User::where('role', 'regisseur')->get(), new EditTrancheNotification(
+            $tranche->numero,
+            ['prenom' => $etudiant->prenom, 'nom' => $etudiant->nom],
+            ['prenom' => auth()->user()->prenom, 'nom' => auth()->user()->nom]
+        ));
 
         return redirect()->back();
     }

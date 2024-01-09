@@ -27,7 +27,8 @@ class RemarqueController extends Controller
             $request->input('remarque'),
             $tranche->numero,
             ['prenom' => $etudiant->prenom, 'nom' => $etudiant->nom],
-            ['prenom' => auth()->user()->prenom, 'nom' => auth()->user()->nom]
+            ['prenom' => auth()->user()->prenom, 'nom' => auth()->user()->nom],
+            'Your have a new remark from'
         ));
 
         return redirect()->back()->with('success', 'Remarque ajoutée avec succès.');

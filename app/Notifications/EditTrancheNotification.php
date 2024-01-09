@@ -2,29 +2,23 @@
 
 namespace App\Notifications;
 
-use App\Models\Etudiant;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class RemarqueNotification extends Notification
+class EditTrancheNotification extends Notification
 {
     use Queueable;
 
-    protected $remarque;
-    protected $title;
     protected $tranche_id;
     protected array $from;
     protected array $etudiant;
-
     /**
      * Create a new notification instance.
      */
-    public function __construct($remarque, $tranche_id, $etudiant, $from, $title)
+    public function __construct($tranche_id, $etudiant, $from)
     {
-        $this->remarque = $remarque;
-        $this->title = $title;
         $this->tranche_id = $tranche_id;
         $this->etudiant = $etudiant;
         $this->from = $from;
@@ -59,11 +53,10 @@ class RemarqueNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => $this->title,
-            'remarque' => $this->remarque,
             'tranche_id' => $this->tranche_id,
             'from' => $this->from,
             'etudiant' => $this->etudiant,
+            'title' => 'Tranche edited by'
         ];
     }
 }
