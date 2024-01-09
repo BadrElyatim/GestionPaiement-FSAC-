@@ -1,11 +1,11 @@
 
 <div id="notifications" class='absolute hidden right-full mt-2 shadow-lg bg-white py-2 z-[1000] min-w-full rounded-lg w-[410px] max-h-[500px] overflow-auto'>
   <div class="flex items-center justify-between my-4 px-4">
-    <p class="text-xs text-blue-500 cursor-pointer">Mark as read</p>
+    <a href="{{ route('mark-notifications-as-read') }}" class="text-xs text-blue-500 cursor-pointer">Mark as read</a>
   </div>
   <ul class="divide-y">
     @foreach (auth()->user()->notifications as $notification)
-      <li class='py-4 px-4 flex items-center hover:bg-gray-50 text-black text-sm cursor-pointer'>
+      <li class="py-4 px-4 flex items-center hover:bg-gray-50 text-black text-sm cursor-pointer {{ $notification->read_at ? '': 'bg-blue-100' }}">
         <div>
           <h3 class="text-sm text-[#333] font-semibold">Your have a new remark from {{ $notification->data['from']['prenom'] }} {{ $notification->data['from']['nom'] }}</h3>
             <p class="text-sm text-gray-600 mt-2">{{ $notification->data['remarque'] }}</p>

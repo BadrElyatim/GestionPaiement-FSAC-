@@ -9,6 +9,7 @@ use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\RemarqueController;
 use App\Http\Controllers\RegisseurController;
 use App\Http\Controllers\ProfesseurController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,9 @@ Route::post('/tranches/{tranche}/numero', [TrancheController::class, 'addNumero'
 
 Route::put('/tranches/{tranche}/', [TrancheController::class, 'update'])->middleware(['auth', 'role:professeur'])->name('tranches.update');
 Route::delete('/tranches/{tranche}/', [TrancheController::class, 'destroy'])->middleware(['auth', 'role:professeur'])->name('tranches.destroy');
+
+
+Route::get('/mark-notifications-as-read', [NotificationController::class, 'markAsRead'])->name('mark-notifications-as-read');
 
 
 Route::prefix('tranches/{tranche}/remarques')->group(function () {
