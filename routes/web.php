@@ -60,6 +60,7 @@ Route::post('/tranches/{tranche}/changestatus', [TrancheController::class, 'chan
 Route::post('/tranches/{tranche}/numero', [TrancheController::class, 'addNumero'])->middleware(['auth', 'role:regisseur'])->name('tranches.numero.store');
 
 Route::put('/tranches/{tranche}/', [TrancheController::class, 'update'])->middleware(['auth', 'role:professeur'])->name('tranches.update');
+Route::delete('/tranches/{tranche}/', [TrancheController::class, 'destroy'])->middleware(['auth', 'role:professeur'])->name('tranches.destroy');
 
 
 Route::prefix('tranches/{tranche}/remarques')->group(function () {

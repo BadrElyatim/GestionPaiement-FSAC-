@@ -53,6 +53,13 @@ class TrancheController extends Controller
         return redirect()->back();
     }
 
+    public function destroy(Tranche $tranche)
+    {
+        $tranche->delete();
+
+        return redirect()->back();
+    }
+
     public function update(Tranche $tranche, Request $request)
     {
         $validated = $request->validate(
