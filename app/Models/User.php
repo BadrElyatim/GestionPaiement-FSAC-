@@ -48,8 +48,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function filiere()
+    public function filieres()
     {
-        return $this->hasOne(Filiere::class, 'professeur_id');
+        return $this->hasMany(Filiere::class, 'professeur_id');
     }
 }

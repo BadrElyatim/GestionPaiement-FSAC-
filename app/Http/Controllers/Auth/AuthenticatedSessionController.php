@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
             return redirect(RouteServiceProvider::HOME);
         }
 
-        return redirect()->route('filiere.etudiants', auth()->user()->filiere->id);
+        return redirect()->route('filiere.etudiants', auth()->user()->filieres[0]->id);
     }
 
     /**

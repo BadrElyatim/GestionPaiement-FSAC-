@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="@can('viewany-etudiant') {{ route('dashboard.etudiants') }} @else {{ route('filiere.etudiants', auth()->user()->filiere->id) }} @endcan">
+                    <a href="@can('viewany-etudiant') {{ route('dashboard.etudiants') }} @else {{ route('filiere.etudiants', auth()->user()->filieres[0]->id) }} @endcan">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
@@ -31,7 +31,7 @@
                             {{ __('Etudiants') }}
                         </x-nav-link>
                     @else
-                        <x-nav-link :href="route('filiere.etudiants', auth()->user()->filiere->id)" :active="request()->routeIs('filiere.etudiants')">
+                        <x-nav-link :href="route('filiere.etudiants', auth()->user()->filieres[0]->id)" :active="request()->routeIs('filiere.etudiants')">
                             {{ __('Etudiants') }}
                         </x-nav-link>
                     @endcan
@@ -119,7 +119,7 @@
                     {{ __('Etudiants') }}
                 </x-responsive-nav-link>
             @else
-                <x-responsive-nav-link :href="route('filiere.etudiants', auth()->user()->filiere->id)" :active="request()->routeIs('filiere.etudiants')">
+                <x-responsive-nav-link :href="route('filiere.etudiants', auth()->user()->filieres[0]->id)" :active="request()->routeIs('filiere.etudiants')">
                     {{ __('Etudiants') }}
                 </x-responsive-nav-link>
             @endcan

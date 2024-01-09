@@ -43,11 +43,15 @@ class FiliereController extends Controller
 
     public function show(Filiere $filiere)
     {
-        if (!Gate::allows('viewany-etudiant') && auth()->user()->filiere->id !== $filiere->id) {
+        if (!Gate::allows('viewany-etudiant') && !auth()->user()->filieres->contains($filiere)) {
             abort(403);
         }
 
-        $filieres = Filiere::all();
+        if (auth()->user()->role == 'professeur') {
+            $filieres = auth()->user()->filieres;
+        } else {
+            $filieres = Filiere::all();
+        }
 
         $etudiants = $filiere->etudiants;
 
