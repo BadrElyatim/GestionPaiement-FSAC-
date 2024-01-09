@@ -99,7 +99,7 @@
           @csrf
           <label for="remarque" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ajouter une remarque</label>
           <input type="text" name="remarque" id="remarque" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
-          <button type="submit">Envoyer</button>
+          <button class="mt-2 py-2 px-3 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" type="submit">Envoyer</button>
         </form>
       @endcan
       <!-- End Buttons -->
