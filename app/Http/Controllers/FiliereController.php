@@ -68,6 +68,7 @@ class FiliereController extends Controller
             'totalMPC' => $totalMPC,
             'totalMPNC' => $totalMPNC,
             'totalMR' => $totalMR,
+            'filiere' => $filiere
         ]);
     }
 }
