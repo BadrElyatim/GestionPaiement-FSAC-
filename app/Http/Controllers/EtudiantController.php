@@ -27,6 +27,14 @@ class EtudiantController extends Controller
             $etudiants = Etudiant::with('filiere')->get();
         }
 
+        if ($request->filiere && $request->annee_universitaire) {
+            $etudiants = $etudiants->where('filiere.nom', $request->filiere)
+                                 ->where('filiere.annee_universitaire', $request->annee_universitaire);
+
+
+        }
+
+
         $filieres = Filiere::all();
 
         return view('dashboard', [

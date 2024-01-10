@@ -9,9 +9,14 @@
     @endif
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-between">
-                <x-dashboard.dropdown :filieres=$filieres/>
-                <x-dashboard.search-filiere :filiere=$filiere/>
+            <div class="flex justify-between items-center">
+                <form class="flex items-center gap-4 mb-4" id="filterForm" action="{{ route('etudiants.filter') }}">
+                    @csrf
+                    <x-dashboard.dropdown :filieres="$filieres->unique('nom')"/>
+                    <x-dashboard.annee-dropdown />
+                    <button type="submit" class="ml-2 px-4 py-1 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none self-end">Submit</button>
+                </form>
+                <x-dashboard.search/>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
@@ -117,7 +122,7 @@
                                             aria-hidden
                                             class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
                                         ></span>
-                                        <span class="relative">{{ $etudiant->filiere->nom }}</span>
+                                        <span class="relative">{{ $etudiant->filiere->nom }} {{ $etudiant->filiere->annee_universitaire }}</span>
                                         </span>
                                     </td>
                                     @can('is_prof')
@@ -228,9 +233,6 @@
                         editModal.classList.toggle('translate-x-full')
                     })
                 })
-               
-            
-            
         </script>
     @endpush
 </x-app-layout>

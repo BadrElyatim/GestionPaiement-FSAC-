@@ -66,6 +66,12 @@ class FiliereController extends Controller
             $etudiants = $filiere->etudiants;
         }
 
+        if ($request->filiere && $request->annee_universitaire) {
+            $etudiants = $etudiants->where('filiere.nom', $request->filiere)
+                                 ->where('filiere.annee_universitaire', $request->annee_universitaire);
+
+
+        }
 
         $totalMPC = $etudiants->sum('mpc');
         $totalMPNC = $etudiants->sum('mpnc');
@@ -82,5 +88,35 @@ class FiliereController extends Controller
             'totalMR' => $totalMR,
             'filiere' => $filiere
         ]);
+    }
+
+    public function getYears($filiere_nom)
+    {
+        $filiere = Filiere::where('nom', $filiere_nom)->first();
+
+        if ($filiere) {
+            $years = Filiere::where('nom', $filiere_nom)
+                ->pluck('annee_universitaire')
+                ->unique()
+                ->values()
+                ->all();
+
+            return response()->json($years);
+        } else {
+            return response()->json(['error' => 'Filiere not found'], 404);
+        }
+    }
+
+    public function filter(Request $request)
+    {
+        $filiere = Filiere::where('nom', $request->filiere)
+            ->where('annee_universitaire', $request->annee_universitaire)
+            ->first();
+
+        if ($filiere) {
+            return redirect()->route('filiere.etudiants', ['filiere' => $filiere->id]);
+        } else {
+            return abort(404);
+        }
     }
 }
