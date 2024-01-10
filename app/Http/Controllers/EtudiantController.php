@@ -22,9 +22,10 @@ class EtudiantController extends Controller
                 ->orWhere('prenom', 'LIKE', "%$searchTerm%")
                 ->orWhere('cne', 'LIKE', "%$searchTerm%")
                 ->orWhere('cin', 'LIKE', "%$searchTerm%")
-                ->get();
+                ->get()
+                ->sortBy('Ntn', SORT_REGULAR, true);
         } else {
-            $etudiants = Etudiant::with('filiere')->get();
+            $etudiants = Etudiant::with('filiere')->get()->sortBy('Ntn', SORT_REGULAR, true);
         }
 
         if ($request->filiere && $request->annee_universitaire) {

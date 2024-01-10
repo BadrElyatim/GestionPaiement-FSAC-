@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Etudiants') }} <span class="text-sm text-gray-500">({{ $filiere->nom }})</span>
+            {{ __('Etudiants') }} <span class="text-sm text-gray-500">({{ $filiere->nom }} {{ $filiere->annee_universitaire }})</span>
         </h2>
     </x-slot>
     @if ($errors->any())

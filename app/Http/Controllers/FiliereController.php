@@ -61,9 +61,9 @@ class FiliereController extends Controller
                     ->orWhere('prenom', 'LIKE', "%$searchTerm%")
                     ->orWhere('cne', 'LIKE', "%$searchTerm%")
                     ->orWhere('cin', 'LIKE', "%$searchTerm%");
-            })->get();
+            })->get()->sortBy('Ntn', SORT_REGULAR, true);
         } else {
-            $etudiants = $filiere->etudiants;
+            $etudiants = $filiere->etudiants->sortBy('Ntn', SORT_REGULAR, true);
         }
 
         if ($request->filiere && $request->annee_universitaire) {

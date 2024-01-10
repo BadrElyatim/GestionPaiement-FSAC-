@@ -1,4 +1,4 @@
-<form action="{{ route('dashboard.etudiants') }}" method="GET">
+<form action="" method="GET">
     <div class="flex items-center">
         <label for="search" class="mr-2 text-gray-600">Search:</label>
         <input type="text" id="search" name="search"
