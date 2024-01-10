@@ -41,7 +41,7 @@ class FiliereController extends Controller
         return redirect()->back();
     }
 
-    public function show(Filiere $filiere)
+    public function show(Filiere $filiere, Request $request)
     {
         if (!Gate::allows('viewany-etudiant') && !auth()->user()->filieres->contains($filiere)) {
             abort(403);
@@ -53,7 +53,19 @@ class FiliereController extends Controller
             $filieres = Filiere::all();
         }
 
-        $etudiants = $filiere->etudiants;
+        $searchTerm = $request->input('search');
+
+        if ($searchTerm) {
+            $etudiants = $filiere->etudiants()->where(function ($query) use ($searchTerm) {
+                $query->where('nom', 'LIKE', "%$searchTerm%")
+                    ->orWhere('prenom', 'LIKE', "%$searchTerm%")
+                    ->orWhere('cne', 'LIKE', "%$searchTerm%")
+                    ->orWhere('cin', 'LIKE', "%$searchTerm%");
+            })->get();
+        } else {
+            $etudiants = $filiere->etudiants;
+        }
+
 
         $totalMPC = $etudiants->sum('mpc');
         $totalMPNC = $etudiants->sum('mpnc');

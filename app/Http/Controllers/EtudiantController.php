@@ -12,9 +12,21 @@ use App\Http\Requests\UpdateEtudiantRequest;
 
 class EtudiantController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $etudiants = Etudiant::with('filiere')->get();
+        $searchTerm = $request->input('search');
+
+        if ($searchTerm) {
+            $etudiants = Etudiant::with('filiere')
+                ->where('nom', 'LIKE', "%$searchTerm%")
+                ->orWhere('prenom', 'LIKE', "%$searchTerm%")
+                ->orWhere('cne', 'LIKE', "%$searchTerm%")
+                ->orWhere('cin', 'LIKE', "%$searchTerm%")
+                ->get();
+        } else {
+            $etudiants = Etudiant::with('filiere')->get();
+        }
+
         $filieres = Filiere::all();
 
         return view('dashboard', [
