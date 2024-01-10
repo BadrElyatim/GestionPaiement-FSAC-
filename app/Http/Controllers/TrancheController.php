@@ -24,7 +24,7 @@ class TrancheController extends Controller
 
         return view('tranches', [
             'tranches' => $tranches,
-            'etudiant_cne' => $etudiant->id,
+            'etudiant' => $etudiant,
             'total_payee' => $total_payee ?? 0,
             'reste' => $etudiant->filiere->cout - $total_payee
         ]);

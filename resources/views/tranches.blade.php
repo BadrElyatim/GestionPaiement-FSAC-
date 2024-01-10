@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tranches') }}
+            {{ __('Tranches') }} <span class="text-sm text-gray-500">({{ $etudiant->prenom }} {{ $etudiant->nom }})</span>
         </h2>
     </x-slot>
     @if ($errors->any())
@@ -116,7 +116,7 @@
             </div>
         </div>
     </div>
-    <x-dashboard.add-modal-tranche cne="{{ $etudiant_cne }}"/>
+    <x-dashboard.add-modal-tranche cne="{{ $etudiant->id }}"/>
     
     @push('js')
         <script>
