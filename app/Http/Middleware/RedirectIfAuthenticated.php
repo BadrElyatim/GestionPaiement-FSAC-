@@ -25,8 +25,8 @@ class RedirectIfAuthenticated
                 if (Gate::allows('viewany-etudiant')) {
                     return redirect(RouteServiceProvider::HOME);
                 }
-        
-                return redirect()->route('filiere.etudiants', auth()->user()->filieres[0]->id);
+
+                return redirect()->route('filiere.etudiants', auth()->user()->filieres->sortByDesc('annee_universitaire')->first()->id);
             }
         }
 

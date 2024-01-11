@@ -10,14 +10,14 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @can('viewany-etudiant')
-                <div class="flex justify-between items-center">
+                <div class="flex justify-between items-center flex-col-reverse md:flex-row">
                     <form class="flex items-center gap-4 mb-4" id="filterForm" action="{{ route('etudiants.filter') }}">
                         @csrf
                         <x-dashboard.dropdown :filieres="$filieres->unique('nom')"/>
                         <x-dashboard.annee-dropdown />
                         <button type="submit" class="ml-2 px-4 py-1 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none self-end">Submit</button>
                     </form>
-                    <x-dashboard.search/>
+                    <x-dashboard.search />
                 </div>
             @endcan
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="@can('viewany-etudiant') {{ route('dashboard.etudiants') }} @else {{ route('filiere.etudiants', auth()->user()->filieres[0]->id) }} @endcan">
+                    <a href="@can('viewany-etudiant') {{ route('dashboard.etudiants') }} @else {{ route('filiere.etudiants', auth()->user()->filieres->sortByDesc('annee_universitaire')->first()->id) }} @endcan">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>

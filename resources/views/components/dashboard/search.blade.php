@@ -1,4 +1,4 @@
-<form action="" method="GET">
+<form action="" method="GET" class="mb-5 md:mb-0">
     <div class="flex items-center">
         <label for="search" class="mr-2 text-gray-600">Search:</label>
         <input type="text" id="search" name="search"
