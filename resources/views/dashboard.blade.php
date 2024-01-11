@@ -15,7 +15,6 @@
                         @csrf
                         <x-dashboard.dropdown :filieres="$filieres->unique('nom')"/>
                         <x-dashboard.annee-dropdown />
-                        <button type="submit" class="ml-2 px-4 py-1 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none self-end">Submit</button>
                     </form>
                     <x-dashboard.search />
                 </div>
