@@ -2,7 +2,6 @@
 <div>
     <label for="annee-universitaire-dropdown" class="block text-sm font-medium text-gray-700">Choisis une année universitaire</label>
     <select id="annee-universitaire-dropdown" name="annee_universitaire" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring focus:border-blue-300 sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200" disabled>
-        <option value="" disabled selected></option>
     </select>
     <input type="hidden" id="filiereId" name="filiere_id" value="">
 
@@ -22,7 +21,7 @@
                 .then(response => response.json())
                 .then(years => {
                     // Clear existing options
-                    anneeDropdown.innerHTML = '';
+                    anneeDropdown.innerHTML = '<option value="" disabled selected></option>';
 
                     // Add new options based on the fetched years
                     years.forEach(year => {
@@ -38,6 +37,10 @@
                 .catch(error => {
                     console.error('Error fetching years:', error);
                 });
+        });
+
+        anneeDropdown.addEventListener('change', function () {
+            document.querySelector('#filterForm').submit()
         });
         
     });
