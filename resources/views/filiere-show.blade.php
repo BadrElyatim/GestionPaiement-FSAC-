@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Etudiants') }} <span class="text-sm text-gray-500">({{ $filiere->nom }} {{ $filiere->annee_universitaire }})</span>
+            {{ __('Etudiants') }}
         </h2>
     </x-slot>
     @if ($errors->any())
@@ -14,6 +14,7 @@
                     @csrf
                     <x-dashboard.dropdown :filieres="$filieres->unique('nom')"/>
                     <x-dashboard.annee-dropdown />
+                    <span class="self-end text-sm text-gray-500">({{ $filiere->nom }} {{ $filiere->annee_universitaire }})</span>
                 </form>
                 <x-dashboard.search/>
             </div>
