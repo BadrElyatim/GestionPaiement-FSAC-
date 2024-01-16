@@ -20,10 +20,11 @@
             <form method="POST" action="{{ route('tranches.update', ['tranche' => $tranche->id]) }}" enctype="multipart/form-data" class="p-4 md:p-5">
                 @csrf
                 @method('PUT')
+                <input type="hidden" name="date" value="{{ now()->toDateString() }}">
                     <div class="grid gap-4 mb-4 grid-cols-2">
                         <div class="col-span-2">
                             <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-                            <input type="date" name="date" value="{{ $tranche->date }}" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                            <input type="date" name="date" disabled value="{{ now()->toDateString() }}" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                         </div>
                         <div class="col-span-2">
                             <label for="montant" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Montant</label>

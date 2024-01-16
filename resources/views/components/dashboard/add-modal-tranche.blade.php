@@ -20,10 +20,11 @@
             <form method="POST" action="{{ route('tranches.store', $cne) }}" enctype="multipart/form-data" class="p-4 md:p-5">
                 @csrf
                 <input type="hidden" name="etudiant_cne" value="{{ $cne }}">
+                <input type="hidden" name="date" value="{{ now()->toDateString() }}">
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2 sm:col-span-1">
                         <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-                        <input type="date" name="date" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                        <input type="date" name="date" id="date" disabled value="{{ now()->toDateString() }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="montant" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Montant</label>
