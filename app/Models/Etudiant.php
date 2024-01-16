@@ -34,7 +34,8 @@ class Etudiant extends Model
 
     public function getMrAttribute()
     {
-        return $this->filiere->cout - $this->mpc;
+        $mr = $this->filiere->cout - $this->mpc;
+        return $mr < 0 ? 0 : $mr;
     }
 
     public function getNtAttribute()

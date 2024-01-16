@@ -10,6 +10,7 @@ use App\Http\Controllers\RemarqueController;
 use App\Http\Controllers\RegisseurController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ResponsableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     route::put('/dashboard/filieres/{filiere}', [FiliereController::class, 'update'])->name('filieres.update');
     Route::post('/dashboard/filieres', [FiliereController::class, 'store'])->name('filieres.store');
     Route::get('/dashboard/filieres', [FiliereController::class, 'index'])->name('dashboard.filieres');
+});
+
+Route::middleware(['auth', 'role:responsable'])->group(function () {
+    Route::get('/responsable/filieres', [ResponsableController::class, 'filieres'])->name('responsable.filieres');
 });
 
 Route::get('/dashboard/etudiants', [EtudiantController::class, 'index'])->name('dashboard.etudiants')

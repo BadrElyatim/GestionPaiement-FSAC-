@@ -25,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
             return $user->role === 'admin' || $user->role === 'regisseur';
         });
 
+        Gate::define('view-tranches', function (User $user) {
+            return $user->role === 'professeur' || $user->role === 'regisseur';
+        });
+
         Gate::define('is_admin', function (User $user) {
             return $user->role === 'admin';
         });
@@ -37,8 +41,8 @@ class AppServiceProvider extends ServiceProvider
             return $user->role === 'regisseur';
         });
 
-        Gate::define('view-tranches', function (User $user) {
-            return $user->role === 'professeur' || $user->role === 'regisseur';
+        Gate::define('is_responsable', function (User $user) {
+            return $user->role === 'responsable';
         });
 
     }

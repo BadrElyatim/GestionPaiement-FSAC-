@@ -26,7 +26,7 @@ class TrancheController extends Controller
             'tranches' => $tranches,
             'etudiant' => $etudiant,
             'total_payee' => $total_payee ?? 0,
-            'reste' => $etudiant->filiere->cout - $total_payee
+            'reste' => $etudiant->filiere->cout - $total_payee < 0 ? 0 : $etudiant->filiere->cout - $total_payee
         ]);
     }
 

@@ -121,9 +121,6 @@
                         editModal.classList.toggle('translate-x-full')                        
                     })
                 })
-               
-            
-            
         </script>
     @endpush
 </x-app-layout>
