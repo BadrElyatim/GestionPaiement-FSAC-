@@ -39,6 +39,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     route::delete('/dashboard/professeurs/{professeur}', [ProfesseurController::class, 'destroy'])->name('professeurs.destroy');
     Route::post('/dashboard/professeurs', [ProfesseurController::class, 'store'])->name('professeurs.store');
 
+    Route::get('/dashboard/responsables', [ResponsableController::class, 'index'])->name('dashboard.responsables');
+    route::put('/dashboard/responsables/{responsable}', [ResponsableController::class, 'update'])->name('responsables.update');
+    route::delete('/dashboard/responsables/{responsable}', [ResponsableController::class, 'destroy'])->name('responsables.destroy');
+    Route::post('/dashboard/responsables', [ResponsableController::class, 'store'])->name('responsables.store');
+
     Route::get('/dashboard/regisseurs', [RegisseurController::class, 'index'])->name('dashboard.regisseurs');
     route::put('/dashboard/regisseurs/{regisseur}', [RegisseurController::class, 'update'])->name('regisseurs.update');
     route::delete('/dashboard/regisseurs/{regisseur}', [RegisseurController::class, 'destroy'])->name('regisseurs.destroy');

@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('dashboard.regisseurs')" :active="request()->routeIs('dashboard.regisseurs')">
                         {{ __('Régisseurs') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('dashboard.responsables')" :active="request()->routeIs('dashboard.responsables')">
+                        {{ __('Responsables') }}
+                    </x-nav-link>
                     </div>
             </div>
             
@@ -91,6 +94,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('dashboard.filieres')" :active="request()->routeIs('dashboard.regisseurs')">
                 {{ __('Régisseurs') }}
+            </x-responsive-nav-link> 
+            <x-responsive-nav-link :href="route('dashboard.responsables')" :active="request()->routeIs('dashboard.responsables')">
+                {{ __('Responsable') }}
             </x-responsive-nav-link> 
         </div>
 
