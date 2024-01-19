@@ -18,6 +18,9 @@ class ResponsableController extends Controller
             $filieresRes = Filiere::where('nom', $request->filiere)
                             ->where('annee_universitaire', $request->annee_universitaire)
                             ->get();
+        } else {
+            $filieresRes = Filiere::where('annee_universitaire', now()->month >= 9 ? now()->year . '/' . now()->addYear()->year : now()->subYear()->year . '/' . now()->year)
+                ->get();
         }
 
         return view('responsable.filieres', [
