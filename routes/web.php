@@ -68,7 +68,7 @@ Route::get('/get-years/{filiere_nom}', [FiliereController::class, 'getYears'])->
 Route::get('/etudiants/filter', [FiliereController::class, 'filter'])->name('etudiants.filter');
 
 
-Route::get('etudiants/{etudiant}/tranches', [TrancheController::class, 'index'])->middleware(['auth', 'role:professeur,regisseur', 'prof'])->name('etudiant.tranches');
+Route::get('etudiants/{etudiant}/tranches', [TrancheController::class, 'index'])->middleware(['auth', 'role:professeur,regisseur,responsable', 'prof'])->name('etudiant.tranches');
 Route::post('etudiants/{etudiant}/tranches', [TrancheController::class, 'store'])->middleware(['auth', 'role:professeur,regisseur', 'prof'])->name('tranches.store');
 
 Route::post('/tranches/{tranche}/changestatus', [TrancheController::class, 'changeStatus'])->middleware(['auth', 'role:regisseur'])->name('tranches.changestatus');

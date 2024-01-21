@@ -22,11 +22,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('viewany-etudiant', function (User $user) {
-            return $user->role === 'admin' || $user->role === 'regisseur';
+            return $user->role === 'admin' || $user->role === 'regisseur' || $user->role === 'responsable';
         });
 
         Gate::define('view-tranches', function (User $user) {
-            return $user->role === 'professeur' || $user->role === 'regisseur';
+            return $user->role === 'professeur' || $user->role === 'regisseur' || $user->role === 'responsable';
         });
 
         Gate::define('is_admin', function (User $user) {

@@ -47,7 +47,7 @@
                                     >
                                         Filiere
                                     </th>
-                                    @if(Gate::allows('is_prof') || Gate::allows('is_regisseur'))
+                                    @if(Gate::allows('is_prof') || Gate::allows('is_regisseur') || Gate::allows('is_responsable'))
                                         <th
                                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                         >
@@ -125,7 +125,7 @@
                                         <span class="relative">{{ $etudiant->filiere->nom }} {{ $etudiant->filiere->annee_universitaire }}</span>
                                         </span>
                                     </td>
-                                    @if(Gate::allows('is_prof') || Gate::allows('is_regisseur'))
+                                    @if(Gate::allows('is_prof') || Gate::allows('is_regisseur') || Gate::allows('is_responsable'))
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                             <p class="text-gray-900 whitespace-no-wrap">{{ $etudiant->Mpc }}</p>
                                         </td>
