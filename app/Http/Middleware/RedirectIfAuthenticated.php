@@ -22,11 +22,12 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if (Gate::allows('viewany-etudiant')) {
-                    return redirect(RouteServiceProvider::HOME);
-                }
                 if (Gate::allows('is_responsable')) {
                     return redirect()->route('responsable.filieres');
+                }
+
+                if (Gate::allows('viewany-etudiant')) {
+                    return redirect(RouteServiceProvider::HOME);
                 }
 
                 return redirect()->route('filiere.etudiants', auth()->user()->filieres->sortByDesc('annee_universitaire')->first()->id);
