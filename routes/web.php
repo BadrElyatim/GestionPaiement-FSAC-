@@ -11,6 +11,7 @@ use App\Http\Controllers\RegisseurController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ResponsableController;
+use App\Models\Filiere;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:responsable'])->group(function () {
     Route::get('/responsable/filieres', [ResponsableController::class, 'filieres'])->name('responsable.filieres');
+    Route::get('/filieres/export/', [FiliereController::class, 'export'])->name('filieres.export');
 });
 
 Route::get('/dashboard/etudiants', [EtudiantController::class, 'index'])->name('dashboard.etudiants')

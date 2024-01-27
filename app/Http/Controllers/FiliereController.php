@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Filiere;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\FiliereRequest;
 
 class FiliereController extends Controller
@@ -118,5 +119,10 @@ class FiliereController extends Controller
         } else {
             return abort(404);
         }
+    }
+
+    public function export()
+    {
+        return Excel::download(new \App\Exports\FilieresExport(), 'filieres.xlsx');
     }
 }

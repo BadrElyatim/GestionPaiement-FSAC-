@@ -6,11 +6,16 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form class="flex items-center gap-4 mb-4" id="filterForm" action="{{ route('responsable.filieres') }}">
-                @csrf
-                <x-dashboard.dropdown :filieres="$filieres->unique('nom')"/>
-                <x-dashboard.annee-dropdown />
-            </form>
+            <div class="flex justify-between items-center">
+                <form class="flex items-center gap-4 mb-4" id="filterForm" action="{{ route('responsable.filieres') }}">
+                    @csrf
+                    <x-dashboard.dropdown :filieres="$filieres->unique('nom')"/>
+                    <x-dashboard.annee-dropdown />
+                </form>
+                <button class="">
+                    <a href="{{ route('filieres.export') }}" class="bg-green-400 px-3 py-2 rounded-lg">Export</a>
+                </button>
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="overflow-auto">
