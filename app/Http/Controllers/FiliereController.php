@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\FiliereRequest;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class FiliereController extends Controller
 {
@@ -44,43 +45,51 @@ class FiliereController extends Controller
 
     public function show(Filiere $filiere, Request $request)
     {
+        // Check authorization
         if (!Gate::allows('viewany-etudiant') && !auth()->user()->filieres->contains($filiere)) {
             abort(403);
         }
 
-        if (auth()->user()->role == 'professeur') {
-            $filieres = auth()->user()->filieres;
-        } else {
-            $filieres = Filiere::all();
-        }
+        // Determine the list of filieres based on user role
+        $filieres = (auth()->user()->role == 'professeur') ? auth()->user()->filieres : Filiere::all();
 
+        // Retrieve search term
         $searchTerm = $request->input('search');
 
+        // Query etudiants relation on the filiere
+        $etudiants = $filiere->etudiants();
+
+        // Apply search filter if search term is provided
         if ($searchTerm) {
-            $etudiants = $filiere->etudiants()->where(function ($query) use ($searchTerm) {
+            $etudiants->where(function ($query) use ($searchTerm) {
                 $query->where('nom', 'LIKE', "%$searchTerm%")
                     ->orWhere('prenom', 'LIKE', "%$searchTerm%")
                     ->orWhere('cne', 'LIKE', "%$searchTerm%")
                     ->orWhere('cin', 'LIKE', "%$searchTerm%");
-            })->get()->sortBy('Ntn', SORT_REGULAR, true);
-        } else {
-            $etudiants = $filiere->etudiants->sortBy('Ntn', SORT_REGULAR, true);
+            });
         }
 
-        if ($request->filiere && $request->annee_universitaire) {
-            $etudiants = $etudiants->where('filiere.nom', $request->filiere)
-                                 ->where('filiere.annee_universitaire', $request->annee_universitaire);
+        // Retrieve all etudiants and sort them
+        $etudiants = $etudiants->get()->sortBy('Ntn');
 
+        // Now that we have sorted the collection, we can paginate it
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 10;
+        $currentPageItems = $etudiants->slice(($currentPage - 1) * $perPage, $perPage)->all();
 
-        }
+        // Create the LengthAwarePaginator instance with the current page and per page values
+        $etudiants = new LengthAwarePaginator($currentPageItems, $etudiants->count(), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(), // Maintain the current path
+            'pageName' => 'page', // Specify the page parameter name
+        ]);
 
+        // Calculate totals
         $totalMPC = $etudiants->sum('mpc');
         $totalMPNC = $etudiants->sum('mpnc');
-
-        // Calculate total remaining amount (MR)
         $totalMR = $etudiants->sum(function ($etudiant) {
             return $etudiant->filiere->cout - $etudiant->mpc;
         });
+
         return view('filiere-show', [
             'etudiants' => $etudiants,
             'filieres' => $filieres,
@@ -90,6 +99,7 @@ class FiliereController extends Controller
             'filiere' => $filiere
         ]);
     }
+
 
     public function getYears($filiere_nom)
     {

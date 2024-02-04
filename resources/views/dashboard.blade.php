@@ -204,10 +204,16 @@
                             </tbody>
                         </table>
                     </div>
+                    <x-pagination :paginator="$etudiants" />
                 </div>
+                
             </div>
+            
         </div>
+        
+
     </div>
+
     <x-dashboard.add-modal-etudiant :filieres=$filieres/>
 
     @push('js')

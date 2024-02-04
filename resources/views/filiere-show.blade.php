@@ -206,7 +206,9 @@
                     <p><span class="font-bold">Total MPNC (montant payé non comptabilisé): </span>{{ $totalMPNC }} MAD</p>
                     <p class="mt-5"><span class="font-bold">Total Restant:</span> {{ $totalMR }} MAD</p>
                     @endcan
+                    <x-pagination :paginator="$etudiants" />
                 </div>
+                
             </div>
         </div>
     </div>

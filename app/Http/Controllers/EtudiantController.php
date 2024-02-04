@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use App\Http\Requests\AddEtudiantRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UpdateEtudiantRequest;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class EtudiantController extends Controller
 {
@@ -16,25 +17,32 @@ class EtudiantController extends Controller
     {
         $searchTerm = $request->input('search');
 
+        $etudiants = Etudiant::with('filiere');
+
         if ($searchTerm) {
-            $etudiants = Etudiant::with('filiere')
-                ->where('nom', 'LIKE', "%$searchTerm%")
+            $etudiants->where('nom', 'LIKE', "%$searchTerm%")
                 ->orWhere('prenom', 'LIKE', "%$searchTerm%")
                 ->orWhere('cne', 'LIKE', "%$searchTerm%")
-                ->orWhere('cin', 'LIKE', "%$searchTerm%")
-                ->get()
-                ->sortBy('Ntn', SORT_REGULAR, true);
-        } else {
-            $etudiants = Etudiant::with('filiere')->get()->sortBy('Ntn', SORT_REGULAR, true);
+                ->orWhere('cin', 'LIKE', "%$searchTerm%");
         }
 
-        if ($request->filiere && $request->annee_universitaire) {
-            $etudiants = $etudiants->where('filiere.nom', $request->filiere)
-                                 ->where('filiere.annee_universitaire', $request->annee_universitaire);
-
-
+        if ($request->filled('filiere') && $request->filled('annee_universitaire')) {
+            $etudiants->whereHas('filiere', function ($query) use ($request) {
+                $query->where('nom', $request->filiere)
+                    ->where('annee_universitaire', $request->annee_universitaire);
+            });
         }
 
+        $etudiants = $etudiants->get()->sortBy('Ntn');
+
+        // Now that we have sorted the collection, we can paginate it
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 10;
+        $currentPageItems = $etudiants->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $etudiants = new LengthAwarePaginator($currentPageItems, $etudiants->count(), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(), // Maintain the current path
+            'pageName' => 'page', // Specify the page parameter name
+        ]);
 
         $filieres = Filiere::all();
 
@@ -43,6 +51,7 @@ class EtudiantController extends Controller
             'filieres' => $filieres
         ]);
     }
+
 
     public function destroy(Etudiant $etudiant)
     {
