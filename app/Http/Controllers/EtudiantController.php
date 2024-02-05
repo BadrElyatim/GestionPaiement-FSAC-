@@ -37,7 +37,7 @@ class EtudiantController extends Controller
 
         // Now that we have sorted the collection, we can paginate it
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 10;
+        $perPage = 20;
         $currentPageItems = $etudiants->slice(($currentPage - 1) * $perPage, $perPage)->all();
         $etudiants = new LengthAwarePaginator($currentPageItems, $etudiants->count(), $perPage, $currentPage, [
             'path' => LengthAwarePaginator::resolveCurrentPath(), // Maintain the current path

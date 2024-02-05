@@ -74,7 +74,7 @@ class FiliereController extends Controller
 
         // Now that we have sorted the collection, we can paginate it
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 10;
+        $perPage = 20;
         $currentPageItems = $etudiants->slice(($currentPage - 1) * $perPage, $perPage)->all();
 
         // Create the LengthAwarePaginator instance with the current page and per page values
