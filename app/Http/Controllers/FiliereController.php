@@ -72,6 +72,13 @@ class FiliereController extends Controller
         // Retrieve all etudiants and sort them
         $etudiants = $etudiants->get()->sortBy('Ntn');
 
+        // Calculate totals
+        $totalMPC = $etudiants->sum('mpc');
+        $totalMPNC = $etudiants->sum('mpnc');
+        $totalMR = $etudiants->sum(function ($etudiant) {
+            return $etudiant->filiere->cout - $etudiant->mpc;
+        });
+
         // Now that we have sorted the collection, we can paginate it
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 20;
@@ -83,12 +90,7 @@ class FiliereController extends Controller
             'pageName' => 'page', // Specify the page parameter name
         ]);
 
-        // Calculate totals
-        $totalMPC = $etudiants->sum('mpc');
-        $totalMPNC = $etudiants->sum('mpnc');
-        $totalMR = $etudiants->sum(function ($etudiant) {
-            return $etudiant->filiere->cout - $etudiant->mpc;
-        });
+
 
         return view('filiere-show', [
             'etudiants' => $etudiants,
