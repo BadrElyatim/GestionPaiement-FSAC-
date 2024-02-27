@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Filiere;
 use App\Models\Etudiant;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrancheController;
@@ -9,9 +12,8 @@ use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\RemarqueController;
 use App\Http\Controllers\RegisseurController;
 use App\Http\Controllers\ProfesseurController;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ResponsableController;
-use App\Models\Filiere;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,5 +102,18 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/storage/{imageName}', function ($imageName) {
+    $filePath = storage_path('app/public/' . $imageName);
+
+    if (file_exists($filePath)) {
+        $fileContents = file_get_contents($filePath);
+        $fileType = mime_content_type($filePath);
+
+        return response($fileContents)->header('Content-Type', $fileType);
+    }
+
+    return abort(404);
+})->middleware('auth');
 
 require __DIR__ . '/auth.php';
